@@ -1,28 +1,26 @@
 'use client';
 import Image from "next/image";
-import { run } from "node:test";
 import { useState } from "react";
 
 export default function Home() {
-  var runes: (string | string[])[] = []
+  let runes: (string | string[])[] = []
   
-  const [rune_images, set_rune_images] = useState<String[]>([]);
+  const [rune_images, set_rune_images] = useState<string[]>([]);
 
   const parse = (e: any) => {
     e.preventDefault()
     const formData = new FormData(e.target);
     const formProps = Object.fromEntries(formData);
-    let sentence: String = formProps["sentence"].toString();
+    const sentence: string = formProps["sentence"].toString();
     console.log(sentence);
 
     runes = [];
     set_rune_images([]);
 
-    let consonants = "mnptkswlj"
-    let consonants2 = "mnptkswlj "
-    let vowels = "aeiou"
+    const consonants2 = "mnptkswlj "
+    const vowels = "aeiou"
     
-    var i = 0;
+    let i = 0;
     while (i < sentence.length) {
       if (sentence[i] == " ") {
         runes.push("divide")
@@ -63,15 +61,15 @@ export default function Home() {
       }
     }
 
-    var r = [];
-    for (var i = 0; i < runes.length; i++) {
+    const r = [];
+    for (let i = 0; i < runes.length; i++) {
       if (vowels.includes(runes[i][0])) {
-        var new_rune = "/" + runes[i][1].toUpperCase() + runes[i][0] + ".png";
-        var inverse = "/In.png";
+        const new_rune = "/" + runes[i][1].toUpperCase() + runes[i][0] + ".png";
+        const inverse = "/In.png";
         r.push(new_rune);
         r.push(inverse);
       } else {
-        var new_rune = "/" + runes[i][0].toUpperCase() + runes[i][1] + ".png";
+        const new_rune = "/" + runes[i][0].toUpperCase() + runes[i][1] + ".png";
         r.push(new_rune);
       }
       //set_rune_images(old_rune_images => [...old_rune_images, ...[new_rune]])
